@@ -7,10 +7,7 @@ import model.enums.Idioma;
 
 import java.util.List;
 
-/**
- * Implementação de catálogo para uso fora dos testes.
- * Contém mais de 30 filmes hardcoded.
- */
+
 public class CatalogoMock implements CatalogoFilmesAPI {
 
     @Override

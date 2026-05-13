@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Resultado de uma recomendação: filme + score + justificativa. Imutável.
- */
+
 public final class Recomendacao {
 
     private final Filme filme;

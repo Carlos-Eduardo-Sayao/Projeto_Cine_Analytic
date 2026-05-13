@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Representa um usuário do sistema CineAnalytic.
- */
+
 public class Usuario {
 
     private final String nome;

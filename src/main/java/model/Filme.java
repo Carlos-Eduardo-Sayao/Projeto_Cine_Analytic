@@ -7,9 +7,7 @@ import model.enums.Idioma;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Representa um filme do catálogo. Imutável por design.
- */
+
 public final class Filme {
 
     private final String id;

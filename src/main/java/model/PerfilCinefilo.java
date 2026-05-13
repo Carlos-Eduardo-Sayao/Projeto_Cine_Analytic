@@ -12,9 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Representa as preferências cinematográficas de um usuário.
- */
+
 public class PerfilCinefilo {
 
     private final Map<Genero, Double> pesosGenero;
@@ -35,13 +33,7 @@ public class PerfilCinefilo {
         this.classificacaoMaxima = ClassificacaoEtaria.DEZOITO;
     }
 
-    /**
-     * Define o peso de preferência para um gênero.
-     *
-     * @param genero gênero a configurar
-     * @param peso   valor entre 0.0 e 1.0
-     * @throws PesoInvalidoException se o peso estiver fora do intervalo [0.0, 1.0]
-     */
+    
     public void setPeso(Genero genero, double peso) {
         if (peso < 0.0 || peso > 1.0) {
             throw new PesoInvalidoException(
@@ -55,11 +47,7 @@ public class PerfilCinefilo {
         return pesosGenero.getOrDefault(genero, 0.5);
     }
 
-    /**
-     * Define a faixa de duração preferida.
-     *
-     * @throws DuracaoInvalidaException se mínimo for maior que máximo
-     */
+    
     public void setFaixaDuracao(int minima, int maxima) {
         if (minima > maxima) {
             throw new DuracaoInvalidaException(
@@ -89,11 +77,7 @@ public class PerfilCinefilo {
         return Collections.unmodifiableList(idiomasAceitos);
     }
 
-    /**
-     * Marca um filme como assistido no histórico.
-     *
-     * @param idFilme identificador do filme
-     */
+    
     public void marcarComoAssistido(String idFilme) {
         if (!historico.contains(idFilme)) {
             historico.add(idFilme);
@@ -108,13 +92,7 @@ public class PerfilCinefilo {
         return Collections.unmodifiableList(historico);
     }
 
-    /**
-     * Adiciona uma nota para um filme.
-     *
-     * @param idFilme identificador do filme
-     * @param nota    valor entre 1 e 5
-     * @throws IllegalArgumentException se a nota estiver fora de [1, 5]
-     */
+    
     public void adicionarNota(String idFilme, int nota) {
         if (nota < 1 || nota > 5) {
             throw new IllegalArgumentException(

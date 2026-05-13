@@ -12,11 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Orquestrador principal do sistema CineAnalytic.
- * Recebe um perfil, busca o catálogo, filtra, pontua, ordena e retorna top N.
- * Todas as dependências são injetadas via construtor (nunca instanciadas aqui).
- */
+
 public class RecomendadorService {
 
     private final CatalogoFilmesAPI catalogo;
@@ -26,9 +22,7 @@ public class RecomendadorService {
     private final CalculadoraScore calculadora;
     private final FiltroFilmes filtro;
 
-    /**
-     * Construtor com injeção de todas as dependências.
-     */
+    
     public RecomendadorService(CatalogoFilmesAPI catalogo,
                                 HistoricoUsuarioRepository historico,
                                 NotificadorPush notificador,
@@ -43,14 +37,7 @@ public class RecomendadorService {
         this.filtro       = filtro;
     }
 
-    /**
-     * Gera uma lista ranqueada de recomendações para o usuário.
-     *
-     * @param usuario usuário que receberá as recomendações
-     * @param topN    número máximo de resultados a retornar
-     * @return lista ordenada por score desc; nunca null
-     * @throws PerfilIncompletoException se o perfil do usuário não estiver válido
-     */
+    
     public List<Recomendacao> recomendar(Usuario usuario, int topN) {
         validarPerfil(usuario);
 
@@ -77,13 +64,7 @@ public class RecomendadorService {
         return topLista;
     }
 
-    /**
-     * Retorna uma única recomendação aleatória dentre os filmes que passaram no filtro.
-     * Modo "Surpreenda-me".
-     *
-     * @param usuario usuário que receberá a recomendação
-     * @return recomendação aleatória, ou Optional.empty() se nada passar no filtro
-     */
+    
     public Optional<Recomendacao> recomendarAleatorio(Usuario usuario) {
         List<Filme> todosFilmes = buscarCatalogoComResiliencia();
 

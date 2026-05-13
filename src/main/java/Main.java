@@ -11,15 +11,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-/**
- * Ponto de entrada do sistema CineAnalytic.
- * Demonstra o fluxo completo: perfil → filtro → score → recomendação.
- */
 public class Main {
 
     public static void main(String[] args) {
 
-        // ── 1. Configurar dependências ────────────────────────────────────
+        
         CatalogoFilmesAPI catalogo   = new CatalogoMock();
         HistoricoUsuarioRepository historico  = criarHistoricoSimples();
         NotificadorPush notificador  = criarNotificadorConsole();
@@ -31,24 +27,24 @@ public class Main {
                 catalogo, historico, notificador, gerador, calculadora, filtro
         );
 
-        // ── 2. Criar usuário com perfil ───────────────────────────────────
+        
         PerfilCinefilo perfil = new PerfilCinefilo();
         perfil.setPeso(Genero.FICCAO_CIENTIFICA, 0.9);
         perfil.setPeso(Genero.DRAMA,             0.7);
         perfil.setPeso(Genero.COMEDIA,           0.5);
-        perfil.setPeso(Genero.TERROR,            0.0); // não quer terror
+        perfil.setPeso(Genero.TERROR,            0.0); 
         perfil.setPeso(Genero.ROMANCE,           0.4);
         perfil.setFaixaDuracao(90, 160);
         perfil.setClassificacaoMaxima(ClassificacaoEtaria.DEZESSEIS);
         perfil.adicionarIdioma(Idioma.PORTUGUES);
         perfil.adicionarIdioma(Idioma.INGLES);
-        perfil.marcarComoAssistido("F04"); // já assistiu Interestelar
-        perfil.marcarComoAssistido("F08"); // já assistiu Matrix
-        perfil.adicionarNota("F09", 5);    // adorou Blade Runner 2049
+        perfil.marcarComoAssistido("F04"); 
+        perfil.marcarComoAssistido("F08"); 
+        perfil.adicionarNota("F09", 5);    
 
         Usuario maria = new Usuario("Maria", 28, perfil, true);
 
-        // ── 3. Gerar Top 5 recomendações ─────────────────────────────────
+        
         System.out.println("═══════════════════════════════════════════════");
         System.out.println("       CineAnalytic — Sistema de Recomendação  ");
         System.out.println("═══════════════════════════════════════════════");
@@ -74,7 +70,7 @@ public class Main {
             }
         }
 
-        // ── 4. Modo Surpreenda-me ─────────────────────────────────────────
+        
         System.out.println("-----------------------------------------------");
         System.out.println(">>> Modo 'Surpreenda-me':");
         Optional<Recomendacao> surpresa = service.recomendarAleatorio(maria);
@@ -87,7 +83,7 @@ public class Main {
         System.out.println("═══════════════════════════════════════════════");
     }
 
-    // ── Implementações inline simples (sem banco, sem HTTP) ───────────────
+    
 
     private static HistoricoUsuarioRepository criarHistoricoSimples() {
         return new HistoricoUsuarioRepository() {

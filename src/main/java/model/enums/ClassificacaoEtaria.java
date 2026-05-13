@@ -1,8 +1,6 @@
 package model.enums;
 
-/**
- * Enum com as classificações etárias possíveis para um filme.
- */
+
 public enum ClassificacaoEtaria {
     LIVRE(0),
     DEZ(10),
@@ -17,7 +15,7 @@ public enum ClassificacaoEtaria {
         this.idadeMinima = idadeMinima;
     }
 
-    /** Retorna a idade mínima necessária para esta classificação. */
+    
     public int getIdadeMinimal() {
         return idadeMinima;
     }

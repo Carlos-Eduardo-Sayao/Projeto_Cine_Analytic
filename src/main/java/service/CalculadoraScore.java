@@ -5,10 +5,7 @@ import model.PerfilCinefilo;
 import model.Recomendacao;
 import model.enums.Genero;
 
-/**
- * Calcula o score de compatibilidade (0–100) entre um filme e um perfil.
- * Lógica pura — não deve ser mockada nos testes.
- */
+
 public class CalculadoraScore {
 
     static final double PESO_GENERO       = 0.50;
@@ -16,13 +13,7 @@ public class CalculadoraScore {
     static final double PESO_POPULARIDADE = 0.15;
     static final double PESO_AFINIDADE    = 0.15;
 
-    /**
-     * Calcula e retorna uma Recomendacao com score e justificativa.
-     *
-     * @param filme  filme a avaliar
-     * @param perfil preferências do usuário
-     * @return recomendação com score calculado
-     */
+    
     public Recomendacao calcular(Filme filme, PerfilCinefilo perfil) {
         double componenteGenero       = calcularComponenteGenero(filme, perfil);
         double componenteDuracao      = calcularComponenteDuracao(filme, perfil);
@@ -40,7 +31,7 @@ public class CalculadoraScore {
         return new Recomendacao(filme, scoreFinal, justificativa);
     }
 
-    /** Componente de gênero: média dos pesos dos gêneros do filme × 100. */
+    
     double calcularComponenteGenero(Filme filme, PerfilCinefilo perfil) {
         double somaPesos = filme.getGeneros().stream()
                 .mapToDouble(perfil::getPeso)
@@ -49,7 +40,7 @@ public class CalculadoraScore {
         return media * 100.0;
     }
 
-    /** Componente de duração: 100 se dentro da faixa; reduz proporcionalmente fora. */
+    
     double calcularComponenteDuracao(Filme filme, PerfilCinefilo perfil) {
         int duracao = filme.getDuracao();
         int minima  = perfil.getDuracaoMinima();
@@ -64,12 +55,12 @@ public class CalculadoraScore {
         return Math.max(0.0, 100.0 - penalidade);
     }
 
-    /** Componente de popularidade: valor direto (já é de 0 a 100). */
+    
     double calcularComponentePopularidade(Filme filme) {
         return Math.min(100.0, filme.getPopularidade());
     }
 
-    /** Bônus de afinidade: baseado nas notas dadas a filmes de mesmo gênero. */
+    
     double calcularBonusAfinidade(Filme filme, PerfilCinefilo perfil) {
         if (perfil.getNotas().isEmpty()) {
             return 50.0;

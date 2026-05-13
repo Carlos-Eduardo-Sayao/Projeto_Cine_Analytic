@@ -1,8 +1,6 @@
 package model.enums;
 
-/**
- * Enum com os gêneros de filmes disponíveis no sistema.
- */
+
 public enum Genero {
     ACAO,
     COMEDIA,
